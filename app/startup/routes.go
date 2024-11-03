@@ -11,6 +11,13 @@ func (a *App) InitializeRoutes() {
 
 	// Routing for auth
 	a.Post("/login", a.HandleRequest(controllers.Login))
+
+	// Routing for handling the users
+	a.Get("/users", a.HandleRequest(controllers.GetAllUsers))
+	a.Post("/users", a.HandleRequest(controllers.CreateUser))
+	a.Get("/users/{id:[0-9]+}", a.HandleRequest(controllers.GetUserById))
+	a.Put("/users/{id:[0-9]+}", a.HandleRequest(controllers.UpdateUser))
+	a.Delete("/users/{id:[0-9]+}", a.HandleRequest(controllers.DeleteUser))
 }
 
 // Get wraps the router for GET method
